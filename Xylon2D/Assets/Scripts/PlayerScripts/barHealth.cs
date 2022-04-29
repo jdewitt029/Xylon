@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
+/*
+*   This class is a holder for the player's health to be represented on the screen
+*/
 public class barHealth : MonoBehaviour
 {
 
