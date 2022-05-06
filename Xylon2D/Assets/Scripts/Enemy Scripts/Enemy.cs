@@ -8,11 +8,11 @@ public class Enemy : MonoBehaviour
 
     public int health = 100;
 
-    public GameObject deathEffect;
+    //public GameObject deathEffect;
 
     //bool dead = false;
 
-    
+
 
     public Animator animator; 
 
@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     public void TakeDamage(int damage)
     {
+        SoundManager.PlaySound("enemyDamaged");
         health -= damage;
 
         //animator.SetTrigger("Hurt");
@@ -40,7 +41,7 @@ public class Enemy : MonoBehaviour
 
         //animator.SetBool("isDead", true);
 
-        Instantiate(deathEffect, transform.position, Quaternion.identity);
+        //Instantiate(deathEffect, transform.position, Quaternion.identity);
 
         //animator.SetBool("isDying", false);
         //dead = false;

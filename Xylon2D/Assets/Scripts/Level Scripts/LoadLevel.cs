@@ -22,7 +22,7 @@ public class LoadLevel : MonoBehaviour
 
     void Update()
     {
-
+       
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -31,7 +31,7 @@ public class LoadLevel : MonoBehaviour
         GameObject collisionGameObject = collision.gameObject;
 
 
-        if(collisionGameObject.tag == "Player")
+        if (collisionGameObject.tag == "Player") 
         {
             if (useIntegerToLoadLevel)
             {
@@ -47,7 +47,7 @@ public class LoadLevel : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
-        Debug.Log("Quit");
+        //Debug.Log("Quit");
     }
    
 }

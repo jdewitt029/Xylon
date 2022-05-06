@@ -31,7 +31,8 @@ public class weapon : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1"))
         {
-     
+
+            
             Shoot();
 
 
@@ -46,7 +47,7 @@ public class weapon : MonoBehaviour
     {
 
         Instantiate(ShurikenPrefab, firePoint.position, firePoint.rotation);
-
+        SoundManager.PlaySound("throw");
         animator.SetTrigger("Attack");
 
         

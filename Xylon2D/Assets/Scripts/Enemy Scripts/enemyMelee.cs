@@ -28,11 +28,22 @@ public class enemyMelee : MonoBehaviour
         //attacl only when player in sight
         if (PlayerInSight())
         {
+            
 
             if (cooldownTimer >= attackCooldown)
             {
+                
                 cooldownTimer = 0;
+
+
+                SoundManager.PlaySound("enemyNoise");
+
+                SoundManager.PlaySound("slash");
+
                 animator.SetTrigger("attack");
+
+                
+
                 //attack
             }
 
@@ -54,7 +65,9 @@ public class enemyMelee : MonoBehaviour
 
         if (hit.collider != null)
 
-            playerHealth = hit.transform.GetComponent<Health>();
+            
+
+        playerHealth = hit.transform.GetComponent<Health>();
 
 
         return hit.collider != null;
@@ -72,7 +85,7 @@ public class enemyMelee : MonoBehaviour
     {
         if (PlayerInSight())
         {
-
+            SoundManager.PlaySound("damaged");
             playerHealth.TakeDamage(damage);
 
         }

@@ -37,6 +37,8 @@ public class PlayerMovement : MonoBehaviour {
 
         if (Input.GetButtonDown("Jump"))
         {
+            SoundManager.PlaySound("jump");
+
             animator.SetBool("isJumping", true);
             jump = true;
 
@@ -46,7 +48,13 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     
-   
+   private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Coin"))
+        {
+            Destroy(other.gameObject);
+        }
+    }
 
 
     void FixedUpdate ()

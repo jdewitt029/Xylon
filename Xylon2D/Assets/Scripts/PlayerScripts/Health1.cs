@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Health : MonoBehaviour
+public class Health1 : MonoBehaviour
 {
     // Start is called before the first frame update
 
@@ -16,14 +16,13 @@ public class Health : MonoBehaviour
 
     private bool dead;
 
-   
+    
+
 
     private void Awake()
     {
         currentHealth = startingHealth;
         animator = GetComponent<Animator>();
-       
-
     }
 
     public void TakeDamage(float _damage)
@@ -40,20 +39,27 @@ public class Health : MonoBehaviour
             {
                 //player
                 if (GetComponent<PlayerMovement>() != null)
-                //if (currentHealth < 1)
+
                 {
+
                     //trigger death animation 
+                    //animator.SetBool("isDead", true);
+
                     animator.SetTrigger("dies");
-                    //calculates current scene to reload after death
-                   
+
+
+                  
+                    //currentScene = SceneManager.GetActiveScene().buildIndex;
                     LevelManager.instance.GameOver();
 
-                    
+                    gameObject.SetActive(false);
 
-                    //gameObject.SetActive(false);
+                    Destroy(gameObject);
 
-                    //Destroy(gameObject);
-                   
+
+                    //LevelManager.instance.Respawn();
+
+
                 }
                 if(GetComponent<Patrol>() != null)
                 {
@@ -61,29 +67,27 @@ public class Health : MonoBehaviour
                     GetComponent<enemyMelee>().enabled = false;
                 }
 
-
-
+               
                 dead = true;
+
+               
             }
-            
+
+            //reloadScene();
+
         }
-        
+
+
+       
+
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
-        {
             TakeDamage(1);
-        }
-
-        if (dead)
-        {
-            GetComponent<PlayerMovement>().enabled = false;
-            
-        }
-
-        
     }
+
+  
 
 }

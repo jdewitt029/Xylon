@@ -10,7 +10,7 @@ public class LevelManager : MonoBehaviour
 
     public Transform respawnPoint;
     public GameObject playerPrefab;
-
+    private CharacterController2D control;
 
     public CinemachineVirtualCameraBase cam;
 
@@ -24,11 +24,16 @@ public class LevelManager : MonoBehaviour
 
     }
 
-    public void Respawn()
+    public void GameOver()
     {
-        GameObject player = Instantiate(playerPrefab, respawnPoint.position, Quaternion.identity);
-        cam.Follow = player.transform;
-        
+        UIManager _ui = GetComponent<UIManager>();
+        if (_ui != null)
+        {   
+            _ui.ToggleDeathPanel();
+ 
+        }
     }
+
+  
 
 }
