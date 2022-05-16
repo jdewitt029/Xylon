@@ -9,6 +9,8 @@ public class LoadLevel : MonoBehaviour
     public int iLevelToLoad;
     public string sLevelToLoad;
 
+    private ScoreManager coinCheck;
+
     public bool useIntegerToLoadLevel = false;
    
 
@@ -29,6 +31,8 @@ public class LoadLevel : MonoBehaviour
     {
 
         GameObject collisionGameObject = collision.gameObject;
+
+       
 
 
         if (collisionGameObject.tag == "Player") 

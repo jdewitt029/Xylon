@@ -7,7 +7,7 @@ public class SoundManager : MonoBehaviour
 {
 
     public static AudioClip playerAttack, playerHit, jumpSound, enemyAttack, enemyHit,
-        enemySound;
+        enemySound, landOnFish;
 
     static AudioSource audioSrc;
 
@@ -20,6 +20,7 @@ public class SoundManager : MonoBehaviour
         enemyAttack = Resources.Load<AudioClip>("slash");
         enemyHit = Resources.Load<AudioClip>("enemyDamaged");
         enemySound = Resources.Load<AudioClip>("enemyNoise");
+        landOnFish = Resources.Load<AudioClip>("poisoned");
 
         audioSrc = GetComponent<AudioSource>();
     }
@@ -51,6 +52,9 @@ public class SoundManager : MonoBehaviour
                 break;
             case "enemyNoise":
                 audioSrc.PlayOneShot(enemySound);
+                break;
+            case "poisoned":
+                audioSrc.PlayOneShot(landOnFish);
                 break;
         }
     }

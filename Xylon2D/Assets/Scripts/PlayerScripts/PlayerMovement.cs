@@ -6,22 +6,28 @@ public class PlayerMovement : MonoBehaviour {
 
     public CharacterController2D controller;
 
+    [SerializeField] private float damageCooldown;
+
     public Animator animator;
 
     public float runSpeed = 40f;
 
     float horizontalMove = 0f;
 
+    private Health playerHealth;
+
     bool jump = false;
 
+    private float cooldownTimer = Mathf.Infinity;
+
     //new stuff
-   
+
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerHealth = GetComponent<Health>();
     }
 
   
@@ -29,6 +35,9 @@ public class PlayerMovement : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        cooldownTimer += Time.deltaTime;
+
+       
 
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
@@ -53,6 +62,29 @@ public class PlayerMovement : MonoBehaviour {
         if (other.gameObject.CompareTag("Coin"))
         {
             Destroy(other.gameObject);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+
+       
+
+
+            //attack
+
+            if (col.gameObject.CompareTag("fish"))
+            {
+                if (cooldownTimer >= damageCooldown)
+                {
+
+                    cooldownTimer = 0;
+
+                    SoundManager.PlaySound("poisoned");
+
+                    playerHealth.TakeDamage(1);
+
+                }
         }
     }
 
