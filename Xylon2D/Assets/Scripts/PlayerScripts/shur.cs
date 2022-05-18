@@ -30,6 +30,17 @@ public class shur : MonoBehaviour
 
         }
 
+        Boss boss = hitInfo.GetComponent<Boss>();
+
+        if (boss != null)
+        {
+            Debug.Log(hitInfo.name);
+            Destroy(gameObject);
+            boss.TakeDamage(damage);
+
+        }
+
+
         //if (collision.tag == "enemy")
 
 

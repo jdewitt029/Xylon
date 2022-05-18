@@ -9,7 +9,7 @@ public class LoadLevel : MonoBehaviour
     public int iLevelToLoad;
     public string sLevelToLoad;
 
-    private ScoreManager coinCheck;
+    private int coinCheck;
 
     public bool useIntegerToLoadLevel = false;
    
@@ -24,7 +24,7 @@ public class LoadLevel : MonoBehaviour
 
     void Update()
     {
-       
+        coinCheck = ScoreManager.instance.getScore();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -32,10 +32,12 @@ public class LoadLevel : MonoBehaviour
 
         GameObject collisionGameObject = collision.gameObject;
 
-       
+        
 
 
-        if (collisionGameObject.tag == "Player") 
+
+
+        if (collisionGameObject.tag == "Player" && coinCheck == 5 ) 
         {
             if (useIntegerToLoadLevel)
             {

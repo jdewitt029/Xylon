@@ -7,7 +7,7 @@ public class Patrol : MonoBehaviour
 
     public float speed;
     public float rayDistance = 1f;
- 
+    
 
 
     private bool movingRight = true;
@@ -23,7 +23,7 @@ public class Patrol : MonoBehaviour
     // Update is called once per frame
     void Update() 
     {
-
+        
         transform.Translate(Vector2.right * -speed * Time.deltaTime);
 
         RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, rayDistance);
@@ -42,4 +42,6 @@ public class Patrol : MonoBehaviour
         }
 
     }
+
+
 }

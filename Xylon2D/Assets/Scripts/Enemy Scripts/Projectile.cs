@@ -9,7 +9,7 @@ public class Projectile : MonoBehaviour
 
     private Health playerHealth;
     //private PlayerMovement player;
-    private CharacterController2D player;
+    //private CharacterController2D player;
     public float speed = 20f;
     public Rigidbody2D rb;
     public int damage = 50;
