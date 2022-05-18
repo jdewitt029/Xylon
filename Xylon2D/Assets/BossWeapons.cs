@@ -12,8 +12,6 @@ public class BossWeapons : MonoBehaviour
 
     public GameObject bullets, rocks, spearSlash;
 
-
-
     public Animator animator;
 
 
@@ -30,16 +28,21 @@ public class BossWeapons : MonoBehaviour
     void Update()
     {
 
-            //ShootDarts();
+            
 
     }
 
     public void ShootDarts()
     {
+        
+        {
+            SoundManager.PlaySound("dartShot");
+            animator.SetTrigger("darts");
+            Instantiate(bullets, firePoint1.position, firePoint1.rotation);
+           
 
-        Instantiate(bullets, firePoint1.position, firePoint1.rotation);
-        SoundManager.PlaySound("throw");
-        animator.SetTrigger("darts");
+
+        }
 
 
     }
@@ -47,9 +50,10 @@ public class BossWeapons : MonoBehaviour
     public void SpearThrust()
     {
 
-        Instantiate(spearSlash, firePoint2.position, firePoint2.rotation);
-        SoundManager.PlaySound("throw");
         animator.SetTrigger("spear");
+        Instantiate(spearSlash, firePoint2.position, firePoint2.rotation);
+        SoundManager.PlaySound("spearThrust");
+
 
 
     }
@@ -57,11 +61,12 @@ public class BossWeapons : MonoBehaviour
 
     public void GroundStomp()
     {
-
-        Instantiate(rocks, firePoint2.position, firePoint2.rotation);
-        SoundManager.PlaySound("throw");
         animator.SetTrigger("stomp");
+        SoundManager.PlaySound("groundCrush");
 
+        Instantiate(rocks, firePoint3.position, firePoint3.rotation);
+        
+        
 
     }
 

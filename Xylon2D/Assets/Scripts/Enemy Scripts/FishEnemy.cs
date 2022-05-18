@@ -67,7 +67,7 @@ public class FishEnemy: MonoBehaviour
     {
 
         Instantiate(projectile, firePoint.position, firePoint.rotation);
-        //SoundManager.PlaySound("throw");
+        SoundManager.PlaySound("fishShot");
         //animator.SetTrigger("Attack");
 
 
@@ -87,7 +87,7 @@ public class FishEnemy: MonoBehaviour
 
 
 
-            playerHealth = hit.transform.GetComponent<Health>();
+        playerHealth = hit.transform.GetComponent<Health>();
 
 
         return hit.collider != null;

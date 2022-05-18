@@ -14,9 +14,13 @@ public class weapon : MonoBehaviour
 
     public Animator animator;
 
-  
+    [SerializeField] private float attackCooldown;
 
- 
+    private float cooldownTimer = Mathf.Infinity;
+
+
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -27,14 +31,16 @@ public class weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
 
-        if (Input.GetButtonDown("Fire1"))
+        cooldownTimer += Time.deltaTime;
+
+
+        if (Input.GetButtonDown("Fire1") && attackCooldown < cooldownTimer)
         {
 
             
             Shoot();
-
+            cooldownTimer = 0;
 
 
 

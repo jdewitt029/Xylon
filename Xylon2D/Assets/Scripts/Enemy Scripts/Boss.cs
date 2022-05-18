@@ -9,6 +9,8 @@ public class Boss : MonoBehaviour
     public Animator animator;
     int rand;
 
+   
+
     public int health = 100;
 
     [SerializeField] private PolygonCollider2D PolyCollide;
@@ -19,27 +21,19 @@ public class Boss : MonoBehaviour
 
     private bool movingRight = true;
 
-    public Transform firePoint1;
-
-    public Transform firePoint2;
-
-    public Transform firePoint3;
-
-    public GameObject bullets, rocks, spearSlash;
-
-    public BossWeapons attackChoice;
+    
 
     public Transform groundDetection;
 
-    // Start is called before the first frame update
+  
     void Start()
     {
-        animator = GetComponent<Animator>();
+      
 
-        BossWeapons attackChoice = GetComponent<BossWeapons>();
+    animator = GetComponent<Animator>();
+
     }
 
-    // Update is called once per frame
     private void Update()
     {
 
@@ -78,12 +72,41 @@ public class Boss : MonoBehaviour
 
     private void RandomNumber()
     {
-        //rand = Random.Range(1, 3);
-        rand = 1;
-        Debug.Log(rand);
-        Attacks(rand);
-       
+        if (health > 750)
+        {
+            attackCooldown = 2;
+            rand = Random.Range(1, 4);
+            Debug.Log(rand);
+            speed = 4;
+            Attacks(rand);
+        }
+        else if (health > 500 && health <= 750)
+        {
+
+            attackCooldown = 2;
+            rand = Random.Range(1, 8);
+            speed = 7;
+            //rand = 4;
+            Debug.Log(rand);
+            Attacks(rand);
+
+        }
+        else if (health > 250 && health <= 500)
+        {
+            attackCooldown = 2;
+            rand = Random.Range(4, 8);
+            Attacks(rand);
+            speed = 10;
+        }
+        else
+        {
+            attackCooldown = 1.5f;
+            rand = Random.Range(4, 9);
+            Attacks(rand);
+            speed = 12;
+        }
     }
+        
 
     public void TakeDamage(int damage)
     {
@@ -94,10 +117,7 @@ public class Boss : MonoBehaviour
         //animator.SetTrigger("Hurt");
         if (health <= 0)
         {
-            //dead = true;
-
-            //animator.SetBool("dead", true);
-
+            
             Die();
 
         }
@@ -106,14 +126,9 @@ public class Boss : MonoBehaviour
     void Die()
     {
 
-        //animator.SetTrigger("death");
-
-        //GetComponent<Boss>().enabled = false;
-
-        //boxCollide.GetComponent<BoxCollider2D>().enabled = false;
-        //PolyCollide.GetComponent<PolygonCollider2D>().enabled = false;
 
         Destroy(gameObject);
+
 
     }
 
@@ -124,67 +139,50 @@ public class Boss : MonoBehaviour
         {
 
             case 1:
-                //animator.SetTrigger("spear");
-                ShootDarts();
+                
+                GetComponent<BossWeapons>().ShootDarts();
                 break;
             case 2:
-                //animator.SetTrigger("darts");
-                SpearThrust();
+               
+                GetComponent<BossWeapons>().SpearThrust();
                 break;
             case 3:
-                GroundStomp();
-                //animator.SetTrigger("stomp");
+                
+                GetComponent<BossWeapons>().GroundStomp();
                 break;
-            //case 4:
-            //    animator.SetTrigger("darts");
-            //    break;
-            //case 5:
-            //    audioSrc.PlayOneShot(jumpSound);
-            //    break;
-            //case 6:
-            //    audioSrc.PlayOneShot(enemyAttack);
-            //    break;
-            //case 7:
-            //    audioSrc.PlayOneShot(enemyHit);
-            //    break;
-            //case 8:
-            //    audioSrc.PlayOneShot(enemySound);
-            //    break;
-            //case 9:
-            //    audioSrc.PlayOneShot(landOnFish);
-            //    break;
+            case 4:
+                GetComponent<BossWeapons>().GroundStomp();
+                GetComponent<BossWeapons>().SpearThrust();
+                
+                break;
+            case 5:
+                GetComponent<BossWeapons>().GroundStomp();
+                GetComponent<BossWeapons>().ShootDarts();
+                
+                break;
+            case 6:
+                GetComponent<BossWeapons>().SpearThrust();
+                GetComponent<BossWeapons>().ShootDarts();
+                
+                break;
+            case 7:
+                GetComponent<BossWeapons>().SpearThrust();
+                GetComponent<BossWeapons>().ShootDarts();
+               
+                break;
+            case 8:
+                GetComponent<BossWeapons>().SpearThrust();
+                GetComponent<BossWeapons>().ShootDarts();
+                GetComponent<BossWeapons>().GroundStomp();
+
+                break;
+               
+                //    audioSrc.PlayOneShot(landOnFish);
+                //    break;
         }
     }
 
-    void ShootDarts()
-    {
-
-        Instantiate(bullets, firePoint1.position, firePoint1.rotation);
-        //SoundManager.PlaySound("throw");
-        animator.SetTrigger("darts");
-
-
-    }
-
-    void SpearThrust()
-    {
-
-        Instantiate(spearSlash, firePoint2.position, firePoint2.rotation);
-        SoundManager.PlaySound("throw");
-        animator.SetTrigger("spear");
-
-
-    }
-
-
-    void GroundStomp()
-    {
-
-        Instantiate(rocks, firePoint2.position, firePoint2.rotation);
-        SoundManager.PlaySound("throw");
-        animator.SetTrigger("stomp");
-
-
-    }
+  
+    
 
 }

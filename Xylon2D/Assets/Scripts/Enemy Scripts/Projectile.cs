@@ -42,8 +42,9 @@ public class Projectile : MonoBehaviour
 
         if (hitInfo.gameObject.CompareTag("Player"))
             {
-           
+            SoundManager.PlaySound("splash");
             Destroy(gameObject);
+            
             playerHealth.TakeDamage(damage);
 
         }

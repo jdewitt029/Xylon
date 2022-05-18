@@ -7,7 +7,8 @@ public class SoundManager : MonoBehaviour
 {
 
     public static AudioClip playerAttack, playerHit, jumpSound, enemyAttack, enemyHit,
-        enemySound, landOnFish;
+        enemySound, landOnFish, fishAttack, bubblePop, punctureWound, stompSound, thrust,
+        dart, grunt1;
 
     static AudioSource audioSrc;
 
@@ -21,7 +22,13 @@ public class SoundManager : MonoBehaviour
         enemyHit = Resources.Load<AudioClip>("enemyDamaged");
         enemySound = Resources.Load<AudioClip>("enemyNoise");
         landOnFish = Resources.Load<AudioClip>("poisoned");
-
+        fishAttack = Resources.Load<AudioClip>("fishShot");
+        bubblePop = Resources.Load<AudioClip>("splash");
+        punctureWound = Resources.Load<AudioClip>("puncture");
+        stompSound = Resources.Load<AudioClip>("groundCrush");
+        thrust = Resources.Load<AudioClip>("spearThrust");
+        dart = Resources.Load<AudioClip>("dartShot");
+        grunt1 = Resources.Load<AudioClip>("irritated");
         audioSrc = GetComponent<AudioSource>();
     }
 
@@ -55,6 +62,27 @@ public class SoundManager : MonoBehaviour
                 break;
             case "poisoned":
                 audioSrc.PlayOneShot(landOnFish);
+                break;
+            case "fishShot":
+                audioSrc.PlayOneShot(fishAttack);
+                break;
+            case "splash":
+                audioSrc.PlayOneShot(bubblePop);
+                break;
+            case "puncture":
+                audioSrc.PlayOneShot(punctureWound);
+                break;
+            case "groundCrush":
+                audioSrc.PlayOneShot(stompSound);
+                break;
+            case "spearThrust":
+                audioSrc.PlayOneShot(thrust);
+                break;
+            case "dartShot":
+                audioSrc.PlayOneShot(dart);
+                break;
+            case "irritated":
+                audioSrc.PlayOneShot(grunt1);
                 break;
         }
     }
