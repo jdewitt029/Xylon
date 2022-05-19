@@ -30,7 +30,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Before Boss Battle.unity
     guid: a8a640bfbdcc24320b41e0fadb3d2307
   - enabled: 1
-    path: Assets/Scenes/Level4.unity
+    path: Assets/Scenes/Boss Battle.unity
     guid: 7cac2f8feb14c40afac17e18fb5aa076
   - enabled: 1
     path: Assets/Scenes/Final Scene.unity

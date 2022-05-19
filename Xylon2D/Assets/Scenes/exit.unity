@@ -905,7 +905,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1141106617}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.9816947, y: -7.5, z: -10}
+  m_LocalPosition: {x: 2.8400002, y: -7.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1914846754}
@@ -1122,7 +1122,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iLevelToLoad: 1
   sLevelToLoad: 
+  goldTotal: 0
   useIntegerToLoadLevel: 1
+  instance: {fileID: 0}
 --- !u!61 &1203491785
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1382,7 +1384,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1307945524}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.9816947, y: -7.5, z: -10}
+  m_LocalPosition: {x: 2.8400002, y: -7.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1651,6 +1653,7 @@ MonoBehaviour:
   firePoint: {fileID: 265487570}
   ShurikenPrefab: {fileID: 7829368728956352660, guid: 4b966cfe234b44f99820c6ce37e2eb6e, type: 3}
   animator: {fileID: 1537565631}
+  attackCooldown: 0
 --- !u!95 &1537565631
 Animator:
   serializedVersion: 3
@@ -1683,6 +1686,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 1537565633}
+  damageCooldown: 0
   animator: {fileID: 1537565631}
   runSpeed: 30
 --- !u!114 &1537565633
