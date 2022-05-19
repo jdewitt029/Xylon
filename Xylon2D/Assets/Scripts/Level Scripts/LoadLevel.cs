@@ -15,10 +15,13 @@ public class LoadLevel : MonoBehaviour
 
     public bool useIntegerToLoadLevel = false;
 
-    public int enemyHealth;
-   
+    public BossHealth instance;
 
-     void Start()
+    private int healthCheck;
+
+
+
+    void Start()
     {
 
 
@@ -29,7 +32,7 @@ public class LoadLevel : MonoBehaviour
     void Update()
     {
         coinCheck = ScoreManager.instance.getScore();
-        //enemyHealth = Boss.instance.getHealth();
+     
 
     }
 
@@ -38,21 +41,26 @@ public class LoadLevel : MonoBehaviour
 
         GameObject collisionGameObject = collision.gameObject;
 
-        //levelCheck = SceneManager.GetActiveScene().buildIndex;
+        //healthCheck = instance.getHealth();
 
-        //Debug.Log(levelCheck);
 
-        //if (levelCheck == 8)
-        //{
-        //    if (collisionGameObject.tag == "Player" && enemyHealth <= 0)
-        //    {
-        //        SceneManager.LoadScene(iLevelToLoad);
-        //    }
-        //}
 
-            if (collisionGameObject.tag == "Player" && coinCheck == goldTotal) 
+        levelCheck = SceneManager.GetActiveScene().buildIndex;
+
+        //Debug.Log(healthCheck);
+
+        if (levelCheck == 8)
         {
-            
+            if (collisionGameObject.tag == "Player" && instance.getHealth() <= 0)
+            {
+                //Debug.Log(enemyHealth);
+                SceneManager.LoadScene(iLevelToLoad);
+            }
+        }
+
+        if (collisionGameObject.tag == "Player" && coinCheck == goldTotal)
+        {
+
             if (useIntegerToLoadLevel)
             {
                 SceneManager.LoadScene(iLevelToLoad);
@@ -61,7 +69,7 @@ public class LoadLevel : MonoBehaviour
             {
                 SceneManager.LoadScene(sLevelToLoad);
             }
-        }        
+        }
     }
 
     public void QuitGame()

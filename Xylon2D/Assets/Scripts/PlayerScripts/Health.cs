@@ -16,7 +16,7 @@ public class Health : MonoBehaviour
 
     private bool dead;
 
-   
+    //public int enHealth;
 
     private void Awake()
     {
@@ -72,6 +72,15 @@ public class Health : MonoBehaviour
 
     private void Update()
     {
+        //enHealth = Boss.instance.getHealth();
+
+        //if (enHealth = 0)
+        //{
+        //    stopReading;
+        //}
+
+        //Debug.Log(enHealth);
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             TakeDamage(1);

@@ -11,7 +11,7 @@ public class Boss : MonoBehaviour
 
    
 
-    public int health = 100;
+    //public int health = 100;
 
     [SerializeField] private PolygonCollider2D PolyCollide;
     [SerializeField] private BoxCollider2D boxCollide;
@@ -21,11 +21,11 @@ public class Boss : MonoBehaviour
 
     private bool movingRight = true;
 
-    
-
     public Transform groundDetection;
 
-  
+    public  BossHealth instance;
+    //public static Boss instance;
+    //public int healthCheck;
     void Start()
     {
       
@@ -36,10 +36,14 @@ public class Boss : MonoBehaviour
 
     private void Update()
     {
+        //instance.getHealth();
 
+        //Debug.Log(health);
         transform.Translate(Vector2.right * -speed * Time.deltaTime);
 
         cooldownTimer += Time.deltaTime;
+
+        
 
         if (cooldownTimer >= attackCooldown)
         {
@@ -72,26 +76,26 @@ public class Boss : MonoBehaviour
 
     private void RandomNumber()
     {
-        if (health > 750)
+        if (instance.getHealth() > 750)
         {
             attackCooldown = 2;
             rand = Random.Range(1, 4);
-            Debug.Log(rand);
+            //Debug.Log(rand);
             speed = 4;
             Attacks(rand);
         }
-        else if (health > 500 && health <= 750)
+        else if (instance.getHealth() > 500 && instance.getHealth() <= 750)
         {
 
             attackCooldown = 2;
             rand = Random.Range(1, 8);
             speed = 7;
             //rand = 4;
-            Debug.Log(rand);
+            //Debug.Log(rand);
             Attacks(rand);
 
         }
-        else if (health > 250 && health <= 500)
+        else if (instance.getHealth() > 250 && instance.getHealth() <= 500)
         {
             attackCooldown = 2;
             rand = Random.Range(4, 8);
@@ -106,27 +110,27 @@ public class Boss : MonoBehaviour
             speed = 12;
         }
     }
-        
+
 
     public void TakeDamage(int damage)
     {
 
         SoundManager.PlaySound("enemyDamaged");
-        health -= damage;
 
-        //animator.SetTrigger("Hurt");
-        if (health <= 0)
+        instance.UpdateHealth(damage);
+        //Debug.Log(instance.getHealth());
+
+        if (instance.getHealth() <= 0)
         {
-            
+           
             Die();
-
         }
     }
 
     void Die()
     {
 
-
+        //GetComponent<Boss>().speed = 0f;
         Destroy(gameObject);
 
 
@@ -134,7 +138,7 @@ public class Boss : MonoBehaviour
 
     private void Attacks(int r)
     {
-        Debug.Log(r);
+        //Debug.Log(r);
         switch (r)
         {
 
@@ -183,6 +187,9 @@ public class Boss : MonoBehaviour
     }
 
   
-    
+    //public int getHealth()
+    //{
+    //    return health;
+    //}
 
 }

@@ -24,7 +24,7 @@ public class shur : MonoBehaviour
 
         if (enemy != null)
         {
-            Debug.Log(hitInfo.name);
+            //Debug.Log(hitInfo.name);
             Destroy(gameObject);
             enemy.TakeDamage(damage);
 
@@ -34,7 +34,7 @@ public class shur : MonoBehaviour
 
         if (boss != null)
         {
-            Debug.Log(hitInfo.name);
+            //Debug.Log(hitInfo.name);
             Destroy(gameObject);
             boss.TakeDamage(damage);
 
